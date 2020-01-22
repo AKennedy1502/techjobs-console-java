@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by LaunchCode
@@ -75,15 +76,16 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-
+            boolean foundIt = false;
             if (aValue.contains(value)) {
                 jobs.add(row);
             }
+            }
+        if (jobs.size() <1) {
+            System.out.println("The search term that you input did not match any current job posting. Please search again.");
         }
-
         return jobs;
     }
-
     /**
      * Read in data from a CSV file and store it in a list
      */
