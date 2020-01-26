@@ -76,8 +76,8 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-            boolean foundIt = false;
-            if (aValue.contains(value)) {
+
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
             }
@@ -86,6 +86,30 @@ public class JobData {
         }
         return jobs;
     }
+    //create method findbyvalue start//
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            for (String key : row.keySet()) {
+                String aValue = row.get(key).toLowerCase();
+
+                if (aValue.contains(value.toLowerCase())) {
+                    jobs.add(row);
+                }
+            }
+        }
+            if (jobs.size() < 1) {
+                System.out.println("The search term that you input did not match any current job posting. Please search again.");
+            }
+            return jobs;
+        }
+
+    //method find by value end//
     /**
      * Read in data from a CSV file and store it in a list
      */
